@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义动画-animate</title>
+    <style>
+        #div1{width:100px ;height；100px;background: red;filter:alpha(opcity:10);opcity:0.1;}
+    </style>
+    <script src="myjQuery.js"></script>
+    <script>
+        $(function(){
+            $('div1').hover(function(){
+                $(this).animate({width:'200px',height:'200px',opacity:1}),
+            },function(){
+                $(this).animate({width:'100px',height:'100px',opacity:0.3})
+            })
+        });
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

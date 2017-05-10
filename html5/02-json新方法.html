@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*json新方法：1.parse()：只能解析JSON形式的JS，安全性高
+                     2.stringify():将JSON转为字符串
+                     3.克隆.深拷贝
+                    以上ie8及以上支持，可去www.json.org/下载json2.js提供支持
+          eval():可以解析任何字符串变成JS，安全性低*/
+
+        /*1.parse()
+        var str='{name:"hello"}';
+        var json=JSON.parse(str);
+        alert(json.name);*/
+
+        /*2.stringify()
+        var json={name:"monica"};
+        var str=JSON.stringify(json);
+        alert(str);*/
+
+        /*3.1浅拷贝
+        var a={
+          name:"ross"
+        };
+        var b={};
+        for(var attr in a){
+            b[attr]=a[attr];
+        }
+        b.name='recheal';
+        alert(a.name);*/
+
+        //3.2深拷贝
+        var a={
+            name:{
+                age:30
+            }
+        };
+        var str=JSON.stringify(a);
+        var b=JSON.parse(str);
+        alert(b.name.age);
+        b.name.age=12;
+        alert(b.name.age);
+        alert(a.name.age);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

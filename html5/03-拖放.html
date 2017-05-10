@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{list-style: none;width:100px;height:30px;background: yellow;}
+        #div1{width:100px;height:100px;background: red;margin:200px;}
+    </style>
+    <script>
+        window.onload=function(){
+            var aLi=document.getElementsByTagName('li');
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].ondragstart=function(){
+                    this.style.background='blue';
+                }
+                aLi[i].ondragend=function(){
+                    this.style.background='red';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<ul>
+    <li>a</li>
+    <li>d</li>
+    <li draggable="true">s</li>
+</ul>
+<div id="div1"></div>
+</body>
+</html>

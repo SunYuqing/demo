@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单的异步提交</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<form name="login">
+    用户名：<input type="text" id="user"><br>
+    密码：<input type="text" id="pwd"><br>
+    <input type="submit" value="登陆">
+</form>
+<script>
+    /*
+     实现表单的异步交互：
+     方法1.将表单的submit按钮修改为button按钮，绑定一个onclick事件
+     方法2.将表单绑定onsubmit事件，在事件的处理函数中return false（表示阻止表单提交）
+     方法3.获取表单，通过js代码绑定submit事件，在事件的处理函数中return false
+
+     获取表单的几种方式：
+     方法1.getElementById
+     方式2：getElementsByTagName
+     方式3.document.forms[0],获取所有表单中的第一个
+     方式4.document.name名称（表单名称）
+     */
+    /*
+     方法一：使用原生的方式实现表单异步提交
+
+
+     document.login.onsubmit=function(){
+     var user=document.getElementById("user").value;
+     var pwd=document.getElementById("pwd").value;
+     //实现ajax异步提交
+     var xhr=getxhr();
+     xhr.open("post","06.php");
+     xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+     xhr.send("user="+user+"&pwd="+pwd);
+     xhr.onreadystatechange=function(){
+     if(xhr.readyState==4&&xhr.status==200){
+
+     }
+     }
+     //阻止默认提交
+     return false;
+     }
+     function getxhr(){
+     var xhr=null;
+     if(window.XMLHttpRequest){
+     xhr=new XMLHttpRequest();
+     }else{
+     xhr=new ActiveXObject();
+     }
+     return xhr;
+     }
+     */
+
+    //方法二：使用jQuery实现表单异步提交
+
+    $("form").submit(function(event){
+        var data={
+            user:$("#user").val(),
+            pwd:$("#pwd").val()
+        }
+        $.post("06.php",data,function(responseText){
+            console.log(responseText);
+        });
+        event.preventDefault();
+        //等同于return false;
+    });
+</script>
+</body>
+</html>

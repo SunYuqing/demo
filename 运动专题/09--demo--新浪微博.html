@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        *{
+            margin:0;padding:0;
+        }
+        #ul1{
+            width:300px;height:300px;border: 1px solid #000000;
+            margin:0 auto;
+        }
+        #ul1 li{
+            list-style: none;border-bottom: 1px dashed #999999;padding: 2px;overflow: hidden;
+            opacity: 0;filter:alpha(opcity:0);
+        }
+    </style>
+    <script src="move2.js"></script>
+    <script>
+        window.onload=function(){
+            var oTxt=document.getElementById("txt1");
+            var oBtn=document.getElementById("btn1");
+            var oUl=document.getElementById("ul1");
+            oBtn.onclick=function(){
+                var oLi=document.createElement("li");
+                var aLi=oUl.getElementsByTagName("li");
+
+                oLi.innerHTML=oTxt.value;
+                oTxt.value='';
+                if(aLi.length){
+                    oUl.insertBefore(oLi,aLi[0]);
+                }else{
+                    oUl.appendChild(oLi);
+                }
+
+                var iHeight=oLi.offsetHeight;
+                oLi.style.hegiht=0;
+
+                startMove(oLi,{height:iHeight},function(){
+                    startMove(oLi,{opacity:100});
+                });
+
+            }
+        }
+    </script>
+</head>
+<body>
+<textarea name="" id="txt1" cols="30" rows="10"></textarea> <br>
+<input type="button" value="发布" id="btn1">
+<ul id="ul1">
+    <li>this is a post.</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div  ng-controller="myCtrl1">
+        <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped"
+                 ng-style="mywidth">
+                {{mywidth.width}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../js/angular.js"></script>
+<script>
+    angular.module("myModule",["ng"]).controller("myCtrl1",function($scope,$rootScope,$interval){
+        $scope.mywidth={width:"0%"};
+        var percentage=0;
+        var timer=$interval(function(){
+            percentage+=10;
+            $scope.mywidth.width=percentage+"%";
+//            parseInt($scope.mywidth.width.substring(0,$scope.mywidth.width.indexOf("%")))+10
+            if(percentage==100){
+                $interval.cancel(timer);
+            }
+        },1000);
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<div id="app">hellow vue
+		<my-component ></my-component>
+		<my-component ></my-component>
+		<my-component ></my-component>
+	</div>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script>
+
+	// 1.全局注册
+	// 	Vue.component('my-component',{
+	// 		props:['todo'],
+	// 		template:'<div>这是vue的组件</div>'
+	// 	})
+	// 	var app = new Vue({
+	// 		el: '#app',
+	// 		data:{
+	// 			todo: true
+	// 		}
+	// 	});
+
+
+	// 2.局部注册
+	// var child = {
+	// 	template:'<div>A custom component!</div>'
+	// };
+	// new Vue({
+	// 	el: '#app',
+	// 	data: {
+	// 		todo: true
+	// 	},
+	// 	components: {
+	// 		'my-component':child,
+	// 	}
+	// })
+
+
+	//3. 组件内data必须返回的是函数
+	Vue.component('my-component',{
+		template:'<button @click="counter+=1">{{counter}}</button>',
+		data: function() {
+			return {
+				counter: 0
+			}
+		}
+	})
+
+	 var app = new Vue({
+	 	el: '#app'
+	 })
+
+
+	</script>
+</body>
+</html>

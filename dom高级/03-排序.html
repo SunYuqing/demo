@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排序</title>
+    <script>
+        window.onload=function(){
+            var oBtn=document.getElementById("btn1");
+            var oUl=document.getElementById("ul1");
+            var oLi=oUl.getElementsByTagName("li");
+            oBtn.onclick=function(){
+                //1.转成数组
+                var arr=[].slice.call(oLi);//将类数组对象转换为数组对象
+                console.log(arr);
+                //2.数组排序
+                arr.sort(function(li1,li2){
+                    return parseInt(li1.innerHTML)-parseInt(li2.innerHTML);
+                });
+                //3.重新插入
+                for(var i=0;i<arr.length;i++){
+                    oUl.appendChild(arr[i]);
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="排序" id="btn1">
+<ul id="ul1">
+    <li>15</li>
+    <li>22</li>
+    <li>9</li>
+    <li>42</li>
+    <li>31</li>
+</ul>
+</body>
+</html>

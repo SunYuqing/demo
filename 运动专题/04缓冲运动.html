@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#mydiv2{
+			width:100px;height:100px;background:red;
+		}
+		#mydiv1{
+			border:1px solid black;
+			width:500px;
+			height:500px;
+		}
+	</style>
+</head>
+<body>
+	<div id="mydiv1">
+		<div id="mydiv2"></div>
+	</div>
+	<script>
+		var myDiv=document.getElementById("mydiv2");
+		var timer=null;
+		var mySpeed=0;
+		window.onload= function(){
+			myDiv.onclick=startMove(500);
+		}
+		function startMove(iTarget){
+			clearInterval(timer);
+			timer=setInterval(function(){
+				if(myDiv.offsetLeft<iTarget){
+					mySpeed = 10;
+					//document.title = mySpeed;
+				}else{
+					mySpeed = -10;
+				}
+				if(myDiv.offsetLeft == iTarget){
+					clearInterval(timer);
+				}else{
+					myDiv.style.left=(myDiv.offsetLeft+mySpeed)/8+'px';
+				}
+			},300);
+		}
+	</script>
+</body>
+</html>
+

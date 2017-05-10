@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;height:100px;background:#e4393c;position:absolute;
+        }
+        #div2{
+            width: 100px;height:100px;background:#ddd;position:absolute;
+        }
+    </style>
+</head>
+<body>
+<script>
+    //函数变方法，全局变量变成属性
+    window.onload=function(){
+        new Drag("div1");
+        new Drag("div2");
+    };
+    function Drag(id){
+        var that=this;
+        this.disX=0;
+        this.disY=0;
+        this.oDiv=document.getElementById(id);
+        this.oDiv.onmousedown=function(){
+            that.fnDown();
+        };
+    };
+    Drag.prototype.fnDown=function(ev){
+        var that=this;
+        var oEvent=ev||event;
+        this.disX=oEvent.clientX-this.oDiv.offsetLeft;
+        this.disY=oEvent.clientY-this.oDiv.offsetTop;
+
+        document.onmousemove= function () {
+            that.fnMove();
+        }
+        document.onmouseup= function(){
+            that.fnUp();
+        }
+    }
+    Drag.prototype.fnMove=function(ev) {
+        var oEvent=ev||event;
+        var l=oEvent.clientX-this.disX;
+        var t=oEvent.clientY-this.disY;
+
+        this.oDiv.style.left=l+'px';
+        this.oDiv.style.top=t+'px';
+
+    }
+    Drag.prototype.fnUp=function() {
+        document.onmousemove=null;
+        document.onmouseup=null;
+    }
+</script>
+<div id="div1"></div>
+<div id="div2">asdf</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承</title>
+</head>
+<body>
+<script>
+    <!--1.使用call继承属性 2.使用for in 继承方法-->
+    function Person(name,sex){
+        this.name=name;
+        this.sex=sex;
+    }
+    Person.prototype.showName=function(){
+        alert(this.name);
+    };
+    Person.prototype.showSex=function(){
+        alert(this.sex);
+    };
+
+    function  Worker(name,sex,job){
+        Person.call(this,name,sex);//1.继承属性--构造函数伪装
+        this.job=job;
+    }
+    for(var i in Person.prototype){//2.继承方法--原型链
+        Worker.prototype[i]=Person.prototype[i];
+    }
+    Worker.prototype.showJob=function(){
+        alert(this.job);
+    }
+    var oP=new Person("ross","male");
+    var oW=new Worker("Monica","femele","cooker");
+    oP.showName();
+    oW.showSex();
+    oW.showJob();
+
+</script>
+</body>
+</html>

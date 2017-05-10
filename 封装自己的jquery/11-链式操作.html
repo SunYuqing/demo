@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{width:100px;height:100px;background:red;}
+    </style>
+    <script src="myjQuery.js"></script>
+    <script>
+        $(function(){//json
+           $('#div1').css({'width':'200px','height':'200px','background':'green'}).hover(
+                   function(){$('#div1').css('width','500px').css('height','500px')},
+                   function(){$('#div1').css('width','100px').css('height','100px')
+           });
+
+        });
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

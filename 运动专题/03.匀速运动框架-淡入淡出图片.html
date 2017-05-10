@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淡入淡出图片</title>
+	<style>
+		#myImg{
+			filter:alpha(opacity:30);/*兼容IE*/
+			opacity:0.3;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		window.onload=function(){
+			var myImg=document.getElementById("myImg");
+			myImg.onmouseover=function(){
+				startMove(100);
+			}
+			myImg.onmouseout=function(){
+				startMove(30);
+			}
+		}
+		var timer=null;
+		var alpha=30;//定义一个变量代表透明度
+		function startMove(iTarget){
+			var myImg=document.getElementById("myImg");
+			clearInterval(timer);
+			timer=setInterval(
+				function(){
+					var isSpeed=0;
+					if(alpha<iTarget){
+						isSpeed=10;
+					}else{
+						isSpeed=-10;
+					}
+					if(alpha==iTarget){
+						clearInterval(timer);
+					}else{
+						alpha+=isSpeed;
+						myImg.style.filter="alpha(opacity:'+alpha+')";
+						myImg.style.opacity=alpha/100;
+						document.title=alpha;
+					}
+				},30
+			);
+		}
+	</script>
+	<img src="2.jpg" id="myImg">
+</body>
+</html>
+

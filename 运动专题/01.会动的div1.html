@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			background:red;
+			width:100px;
+			height:100px;
+			position:absolute;
+			left:0px;
+			top:10px;
+		}
+	</style>
+</head>
+<body>
+	
+	<script>
+		var timer=null;
+		function startMove(){
+			var oDiv= document.getElementById("box");
+			clearInterval(timer);
+			timer=setInterval(function(){
+				if(oDiv.offsetLeft>=300){
+					clearInterval(timer);
+				}else{
+					oDiv.style.left=oDiv.offsetLeft+5+'px';
+				}
+			},30)
+		}
+
+	</script>
+	<div id="box"><div>
+	<input value="开始" type="button" onclick="startMove()">
+</body>
+</html>
+

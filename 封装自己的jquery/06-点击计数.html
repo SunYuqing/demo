@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function(){
+            var oBtn=document.getElementsByTagName("input");
+            var i=0;
+            for(i=0;i<oBtn.length;i++){
+                addClick(oBtn[i]);
+            }
+            function addClick(obj){//addClick属于局部变量，调用几次就有几个局部变量，也就有几个count，这个是闭包的特性
+                var count=0;
+                obj.onclick=function(){
+                    alert(count++);
+                }
+            }
+            /*也可以写成匿名的函数：
+            for(i=0;i<oBtn.length;i++){
+                (function (obj){
+                    var count=0;
+                    obj.onclick=function(){
+                    alert(count++);
+                 }
+             })(oBtn[i]);
+            }
+            还有一种写法：利用参数也是一种局部变量的方式
+             for(i=0;i<oBtn.length;i++){
+                oBtn.onclick=(function(count){
+                    return function(){
+                        count++;
+                    }
+                })(0);
+            */
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="点我啊">
+<input type="button" value="点我啊">
+<input type="button" value="点我啊">
+</body>
+</html>

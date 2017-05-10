@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机选择彩票</title>
+    <script>
+        //触发历史管理：1.hash 2.pushstate
+        window.onload=function(){
+            var oInput=document.getElementById("input1");
+            var oDiv=document.getElementById("div1");
+            oInput.onclick=function(){
+                oDiv.innerHTML=randomNum(35,7);
+            }
+            function  randomNum(iAll,iNow){
+                var arr=[];
+                for(var i=0;i<iAll;i++){
+                    arr.push(i);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="随机" id="input1">
+<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width:100px;height:100px;background: red;
+        }
+    </style>
+    <script src="myjQuery.js"></script>
+    <script>
+        $(function(){
+            $("#div1").hover(function(){
+//                document.title="over";
+                $("#div1").css("background","yellow");
+            },function () {
+//                document.title="out";
+                $("#div1").css("background","red");
+                    }
+            );
+        });
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

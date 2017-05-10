@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{width:100px;height:100px;background: yellow}
+    </style>
+    <script>
+        //兼容方法  给滚轮添加事件
+        function myAddEvent(obj,sEvent,fn){
+            if(obj.attachEvent){
+                obj.attachEvent('on'+sEvent,fn);
+            }else {
+                obj.addEventListener(sEvent,fn,false);
+            }
+        }
+        window.onload=function(){
+
+            var oDiv=document.getElementById('div1');
+            //判断鼠标滚轮向上滚还是向下滚
+            function  onMouseWheel(ev){
+                var oEvent=ev||event;
+                var bDown=true;
+                //wheelDelta:往下滚：负数-120；正数;120//ie&chrome
+                //detail    :往下滚：正数 3；  往上滚：-3//firefox
+                if(oEvent.wheelDelta){
+                    if(oEvent.wheelDelta<0){
+                        bDown=true;
+                    }else {
+                        bDown=false;
+                    }
+                }else {
+                    if(oEvent.detail>0){
+                        bDown=true;
+                    }else {
+                        bDown=false;
+                    }
+                }
+                alert(bDown);
+            }
+
+            myAddEvent(oDiv,'mousewheel',onMouseWheel);//ie&chrome
+            myAddEvent(oDiv,'DOMMouseScroll',onMouseWheel);//firefox
+
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

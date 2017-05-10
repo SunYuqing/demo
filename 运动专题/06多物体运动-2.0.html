@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多div淡入淡出</title>
+    <style>
+        div{
+            width:50px;height:50px;background: red;opacity:0.3;filter:alpha(opacity:30);margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.onload=function(){
+        var oDiv=document.getElementsByTagName("div");
+        var i=0;
+
+        for(i=0;i<oDiv.length;i++){
+            oDiv[i].alpha=30;//多物体时所有东西都不能共用
+            oDiv[i].onmouseover=function(){
+                //oDiv.timer=null;
+                startMove(this,100);
+            }
+            oDiv[i].onmouseout=function(){
+                startMove(this,30);
+            }
+        }
+    }
+    //var alpha=30;
+    function startMove(obj,iTarget){
+        clearInterval(obj.timer);
+        obj.timer=setInterval(function(){
+            var iSpeed=(iTarget-obj.alpha)/8;
+            iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+            if(obj.alpha==iTarget){
+                clearInterval(obj.timer);
+            }else{
+                obj.alpha+=iSpeed;
+                obj.style.filter="alpha(opacity:'+alpha+')";
+                obj.style.opacity=obj.alpha/100;
+            }
+        },30);
+    }
+</script>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function Aaa (){
+            var that=this;
+            this.a=12;
+            setInterval(function(){
+                that.show();
+            },1000);
+        }
+        Aaa.prototype.show=function(){
+            alert(this.a);
+        }
+        var obj =new Aaa();
+        obj.show();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

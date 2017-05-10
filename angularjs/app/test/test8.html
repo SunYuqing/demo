@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>首页</title>
+</head>
+<body>
+<div class="container" ng-controller="c1" ng-view>
+</div>
+
+
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/angular.js"></script>
+<script>
+    angular.module("myapp",["ng","ngRoute"]).
+        config(function($routeProvider){
+            $routeProvider.
+                    when('/start',{
+                        templateUrl:'tpl/start.html'
+            }).
+                    when('/main',{
+                        templateUrl:'tpl/main.html'
+            }).
+                    when('/detail',{
+                        templateUrl:'tpl/detail.htmlyh'
+            }).
+                    othserwise({
+                        redirectTo:'/start'
+            })
+    })
+</script>
+</body>
+</html>

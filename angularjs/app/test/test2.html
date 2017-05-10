@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div  ng-controller="myCtrl1">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="p in productList">
+                <td>{{$index+1}}</td>
+                <td>{{p.name}}</td>
+                <td>{{p.age}}</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <button class="btn btn-info btn-block" ng-click="loadMore()">加载更多</button>
+    </div>
+</div>
+
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../js/angular.js"></script>
+<script>
+    angular.module("myModule",["ng"]).controller("myCtrl1",function($scope,$rootScope){
+        $scope.productList=[{name:"Monica",age:27},
+            {name:"joey",age:28},
+            {name:"ross",age:29},
+            {name:"reachel",age:25}];
+        $scope.loadMore=function(){
+            console.log("loading...")
+            for(var i=0;i<4;i++){
+                var p={};
+                p.name="friends"+parseInt(Math.random()*10);
+                p.age=i+20;
+                $scope.productList.push(p);
+            }
+        }
+    })
+</script>
+</body>
+</html>

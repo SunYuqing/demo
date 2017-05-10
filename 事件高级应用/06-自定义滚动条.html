@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #parent{width:400px;height:20px;
+            background: #cccccc;
+            position: relative;
+            top:50px;left:100px;}
+        #div1{
+            width:20px;height:20px;background: red;
+            position: absolute;
+            cursor: pointer;
+        }
+        #div2{width:200px;height:300px;position: relative;border: 1px solid #000;
+            top:200px;
+            left:100px;overflow: hidden}
+        #div3{position: absolute}
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById('div1');
+            var oDiv2=document.getElementById('div2');
+            var oDiv3=document.getElementById('div3');
+            var oParent=document.getElementById('parent');
+            drag();
+
+        function drag() {
+           // var oDiv = document.getElementById('div1');
+            oDiv.onmousedown = function (ev) {
+                var oEvent = ev || event;
+                var disX = oEvent.clientX - oDiv.offsetLeft;
+
+                document.onmousemove = function (ev) {
+                    var oEvent = ev || event;
+                    var l=oEvent.clientX - disX;
+                    if(l<0){
+                        l=0;
+                    }else if(l>oParent.offsetWidth-oDiv.offsetWidth){
+                        l=oParent.offsetWidth-oDiv.offsetWidth;
+                    }
+                    oDiv.style.left = l + 'px';
+                    var scale=l/(oParent.offsetWidth-oDiv.offsetWidth);
+                   oDiv3.style.top=-(oDiv3.offsetHeight-oDiv2.offsetHeight)*scale+'px';
+                    document.title=scale;
+                };
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+            }
+        }
+        };
+    </script>
+</head>
+<body>
+<div id="parent">
+    <div id="div1">
+    </div>
+</div>
+<div id="div2">
+    <div id="div3">总结
+
+        facebook使用chunk技术让页面分块输出成很多JS段，这样做的好处就是服务器和客户端可以并行进行处理，不用等服务器全部处理完毕，客户端才进行处理。
+
+        举个博客园首页的列子，博客园首页分为下面几块("推荐博客排行","首页随笔列表","最新新闻"...),
+
+        我们一般对该http请求处理如下：
+
+        1. 浏览器发送http请求
+
+        2. 服务器处理请求(从缓存读取前50个推荐博客，从数据库读取"首页随笔列表",从数据库读取"最新新闻")，生成首页的html代码。
+
+        3. 服务器发送html代码给客户端
+
+        4、浏览器接收到响应，处理html(下载css,js,image,执行js等等)
+
+        可以看出传统的http请求4个过程中，每个过程都必须等待前1个过程完成后才能执行，这样就存在很大的资源浪费。
+
+
+
+        facebook的对该http请求的处理如下：
+
+        1. 浏览器发送http请求
+
+        2. 服务器处理请求(从缓存读取前50个推荐博客,生成"推荐博客"的js代码段，flush输出该代码段,
+
+        　　　　　　服务器继续读取"首页随笔列表"，并生成输入js代码段。
+
+        　　　　　　服务器继续读取"最新新闻"，并生成输入js代码段。
+
+        3. 浏览器接收到js代码段，下载该代码段所需的js和css。插入html代码。
+
+        在这个处理流程中，最大的特点就是2,3是并行进行处理的，服务器处理完一部分数据就把已经处理好的数据交给浏览器进行呈现处理，自己再继续处理其他的数据。
+
+
+
+        PS：文章看完了，有些同学可能会想，为什么不像博客园一样，前台全部用ajax来异步读取"推荐博客" ,“最新新闻”的数据了，这样做就不会出现因为要处理太多数据而让客户端等待太久的问题了。我觉得对于facebook这种并发量巨大的网站，使用这种方法无疑会产生太多的请求，比如facebook首页用了14个chunk，如果使用ajax，则需要多14个request请求，这将增加不少服务器的压力吧</div>
+</div>
+</body>
+</html>

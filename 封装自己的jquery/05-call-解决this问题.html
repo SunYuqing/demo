@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="myjQuery.js"></script>
+</head>
+<body>
+<script>
+    function show(a,b){
+        alert(this);
+    }
+    show(12,2);//是show.call()的简写,window
+    show.call('abx',12,5);//call可以传参，第一个参数为this的新指向
+    show.apply('abx',[12,5]);//使用数组传递
+</script>
+</body>
+</html>

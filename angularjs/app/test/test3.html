@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div  ng-controller="myCtrl1">
+        您点击的次数是 <span>{{count}}</span>
+        <button class="btn btn-info btn-block" ng-click="loadMore()">点击</button>
+    </div>
+</div>
+
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../js/angular.js"></script>
+<script>
+    angular.module("myModule",["ng"]).controller("myCtrl1",function($scope,$rootScope){
+        $scope.count=0;
+        $scope.loadMore=function(){
+                $scope.count++;
+        }
+    })
+</script>
+</body>
+</html>

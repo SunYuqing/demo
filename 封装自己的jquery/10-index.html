@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="myjQuery.js"></script>
+    <script>
+        $(function(){
+                $('input').click(function(){
+                     alert($(this).index());
+                });
+        });
+
+    </script>
+</head>
+<body>
+<span></span><!--index方法指的是在同辈份的元素中索引值，不区别元素-->
+<input type="button" value="aaa">
+<input type="button" value="bbb">
+<input type="button" value="ccc">
+<input type="button" value="ddd">
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变宽的div</title>
+    <style>
+        div{
+            width:100px;height:100px;background: red;margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.onload=function(){
+        var oDiv=document.getElementsByTagName("div");
+       oDiv[0].onclick=function(){
+           startMove(this,'width',200);
+       }
+       oDiv[1].onclick=function(){
+           startMove(this,'height',200);
+       }
+       oDiv[2].onclick=function(){
+           startMove(this,'font-size',40);
+       }
+    }
+    function getStyle(obj,attr){
+        if(obj.currentStyle){//IE8
+            return obj.currentStyle[attr];
+        }else{
+            return getComputedStyle(obj,false)[attr];
+        }
+    }
+    function startMove(obj,attr,iTarget){
+        var oDiv=document.getElementById("div1")
+        clearInterval(obj.timer);
+        obj.timer=setInterval(function() {
+            var iSpeed=(iTarget-parseInt(getStyle(obj,attr)))/8;
+            iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+            if(parseInt(getStyle(obj,attr))==iTarget){
+                clearInterval(obj.timer);
+            }else{
+                obj.style[attr]=parseInt(getStyle(obj,attr))+iSpeed+'px';
+            }
+        },30);
+    }
+</script>
+<div ></div>
+<div ></div>
+<div >qwerrtr</div>
+<div ></div>
+
+</body>
+</html>

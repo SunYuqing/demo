@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{padding:10px;width:100px;height:100px;border: 1px solid #000;}
+    </style>
+    <script src="myjQuery.js"></script>
+    <script>
+        $(function(){
+            $("div").click(function(){
+                alert(this.style.background);
+                return false;
+            })
+            $(document).bind("contextmenu",function(){
+                //alert('a');
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="div1" style="background: red" >
+    <div style="background: yellow">
+        <div style="background: green"></div>
+    </div>
+</div>
+</body>
+</html>

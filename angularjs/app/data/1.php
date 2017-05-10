@@ -1,0 +1,23 @@
+//
+<?php
+//向客户端输出员工信息，json格式
+header("Content-Type:application/json")
+$empList=[];
+$emplist[]=[
+    'eno'=>101;
+    'ename'=>'Tom';
+    'salary'=>rand(1000,9999);
+];
+$emplist[]=[
+    'eno'=>102;
+    'ename'=>'Monica';
+    'salary'=>rand(1000,9999);
+];
+$emplist[]=[
+    'eno'=>103;
+    'ename'=>'Ross';
+    'salary'=>rand(1000,9999);
+];
+$str=json_encode($empList);
+echo $str;
+?>

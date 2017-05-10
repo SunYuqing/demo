@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //九宫格
+        function cdTest(obj1,obj2){
+            var l1=obj1.offsetLeft;
+            var t1=obj1.offsetTop;
+            var r1=obj1.offsetLeft+obj1.offsetWidth;
+            var b1=obj1.offsetTop+obj1.offsetHeight;
+
+            var l2=obj2.offsetLeft;
+            var t2=obj2.offsetTop;
+            var r2=obj2.offsetLeft+obj2.offsetWidth;
+            var b2=obj2.offsetTop+obj2.offsetHeight;
+
+            if(r1<l2||b1<t2||l1>r2||t1>b2){
+                return false;
+            }else {
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

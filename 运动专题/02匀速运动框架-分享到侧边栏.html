@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享到侧边栏</title>
+	<style>
+		#div1{
+			width:100px;
+			height:200px;
+			background:#ccc;
+			position:absolute;
+			top:10px;
+			left:-100px;
+		}
+		#div1>span{
+			width:16px;
+			height:60px;
+			line-height:20px;
+			position:absolute;
+			top:80px;
+			left:100px;
+			background:yellow;
+		}
+	</style>
+</head>
+<body>
+	<div id=div1>
+		<span>分享到</span>
+	</div>
+	<script>
+		var iDiv=document.getElementById("div1");
+		window.onload=function(){
+			iDiv.onmouseover=function(){
+				move(0);
+			}
+			iDiv.onmouseout=function(){
+				move(-100);
+			}
+		}
+		var timer=null;
+		
+		function move(isTarget){
+			clearInterval(timer);
+			var iSpeed = null;
+			if(iDiv.offsetLeft<isTarget){//通过目标点计算速度的正负
+				iSpeed = 10;
+			}else{
+				iSpeed = -10;
+			}
+			timer=setInterval(
+				function(){
+					if(iDiv.offsetLeft==isTarget){
+						clearInterval(timer);
+					}else{
+						iDiv.style.left=iDiv.offsetLeft+iSpeed+'px';
+					}
+				},30
+			);
+		}
+			
+		
+		
+			
+	</script>
+</body>
+</html>

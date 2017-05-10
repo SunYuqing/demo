@@ -1,0 +1,56 @@
+/*---bootstrap样式---*/
+@import "bootstrap.less";
+
+/*---自定义样式---*/
+*{
+  list-style: none;
+}
+header{
+  .navbar-default li>a{
+    color:#c1c1c1;
+    font-weight:500;
+    font-size:20px;
+  }
+  .dropdown .dropdown-menu>li>a{
+    color:#888888;
+    font-size:13px;
+    padding:10px 20px;
+    &:hover{
+      color:red;
+    }
+  }
+
+}
+main{
+  .sec1{
+    background: #ffffff;
+    padding-top:60px;
+    padding-bottom:40px;
+  }
+  .sec2{
+    background:#f3f3f3;
+    padding-top:60px;
+    padding-bottom:40px;
+  }
+}
+footer{
+  .footer-wrapper{
+    .copyright p{
+      color: #a1a1a1;
+    }
+    .container{
+      padding:60px 0;
+      .footer-text {
+        li{
+          padding-top: 10px;
+          span{
+            //padding-top: 40px;
+            display: block;
+            font-size:22px;
+            color: #A1A1A1;
+          }
+        }
+      }
+    }
+  }
+}

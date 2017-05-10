@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width:100px;
+            height:100px;
+            background: red;
+            border: 1px solid black;
+            /*offsetWidth：width+padding+border*/
+        }
+    </style>
+</head>
+<body>
+<script>
+    function getStyle(obj,attr){
+        if(obj.currentStyle){
+            return obj.currentStyle[attr];
+        }else{
+            return getComputedStyle(obj,false)[attr];
+        }
+    }
+    setInterval(function(){
+                var oDiv=document.getElementById("div1");
+                //oDiv.style.width=oDiv.offsetWidth-1+'px';
+                oDiv.style.width=getStyle(oDiv,width)-1+'px';//
+
+            },30
+    );
+</script>
+<div id="div1" style="width:100px"></div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: #000;
+        }
+        #c1{
+            background: #fff;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var  oC=document.getElementById('c1');
+            var oGc=oC.getContext('2d');
+
+            oGc.fillStyle='red';
+
+            oGc.fillRect(10,10,100,100);
+            oGc.strokeRect(110.5,110.5,100,100);//防止线宽变成两个像素，所以加上0.5px
+            oGc.strokeRect(210.5,210.5,100,100);
+        };
+    </script>
+</head>
+<body>
+<canvas id="c1" width=500px height=500px>浏览器不支持canvas</canvas>
+</body>
+</html>

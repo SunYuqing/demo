@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div  ng-controller="myCtrl1">
+        <hr>
+        单价：<input type="text" ng-model="price">
+        <br>
+        <br>
+        数量：<input type="number" ng-model="num">
+        小计：{{price*num}}
+        <hr>
+        <input type="checkbox" ng-model="mycheck">我同意
+        <input type="button" value="提交注册信息" ng-show="mycheck">
+        <hr>
+        请选择您的游戏头像：<br>
+        <select name="" id="" ng-model="myselect">
+            <option value="xll">小萝莉</option>
+            <option value="xxr">小鲜肉</option>
+            <option value="mds">萌大叔</option>
+        </select>
+        <img ng-src="../img/{{imgSrc}}" alt="{{myselect}}">
+
+    </div>
+</div>
+
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../js/angular.js"></script>
+<script>
+    angular.module("myModule",["ng"]).controller("myCtrl1",function($scope,$rootScope,$interval){
+        $scope.price=0;
+        $scope.num=0;
+        $scope.imgSrc="1.jpg";
+        if($scope.myselect=="xll"){
+            $scope.imgSrc="1.jpg";
+        }else if($scope.myselect=="xxr") {
+            $scope.imgSrc="2.jpg";
+        }
+        $scope.$watch("myselect",function(){
+            if($scope.myselect=="xll"){
+                $scope.imgSrc="1.jpg";
+            }else if($scope.myselect=="xxr") {
+                $scope.imgSrc="2.jpg";
+            }else if($scope.myselect=="mds") {
+                $scope.imgSrc="3.jpg";
+            }
+        })
+        console.log($scope.myselect=="xll");
+    })
+</script>
+</body>
+</html>

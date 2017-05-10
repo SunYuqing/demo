@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div  ng-controller="myCtrl1">
+        <img ng-src="../img/{{imgSrc}}" class="img-responsive">
+        <button class="btn btn-info" ng-click="prevP()">上一张</button>
+        <button class="btn btn-info" ng-click="nextP()">下一张</button>
+    </div>
+</div>
+
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../js/angular.js"></script>
+<script>
+    angular.module("myModule",["ng"]).controller("myCtrl1",function($scope,$rootScope){
+        $scope.imgSrc="1.jpg";
+        $scope.nextP=function(){
+           var num = parseInt($scope.imgSrc.substring(0,$scope.imgSrc.indexOf(".")));
+            num=num<2?num+1:1;
+            $scope.imgSrc = num+".jpg";
+        };
+        $scope.prevP=function(){
+           var num = parseInt($scope.imgSrc.substring(0,$scope.imgSrc.indexOf(".")));
+            num=num<2?num+1:1;
+            $scope.imgSrc = num+".jpg";
+        };
+    })
+</script>
+</body>
+</html>

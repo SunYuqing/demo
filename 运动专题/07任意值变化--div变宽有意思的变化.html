@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width:100px;
+            height:100px;
+            background: red;
+            border: 1px solid black;
+            /*offsetWidth：width+padding+border*/
+        }
+    </style>
+</head>
+<body>
+<script>
+    setInterval(function(){
+        var oDiv=document.getElementById("div1");
+        //oDiv.style.width=oDiv.offsetWidth-1+'px';//由于offsetWidth会包含border，所以div的宽会越来越大
+        oDiv.style.width=parseInt(oDiv.style.width)-1+'px';//style.width取得是行间样式
+
+        },30
+    );
+</script>
+<div id="div1" style="width:100px"></div>
+</body>
+</html>

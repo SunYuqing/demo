@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{width:100px;height:100px;background: red;}
+    </style>
+    <script src="myjQuery.js"></script>
+    <script>
+        $(function(){
+            $("#div1").hover(function(){
+                $(this).css("background","yellow");//this--IE9中this指向为window
+            },function () {
+                $(this).css("background","red");
+            }
+            );
+        });
+        /*以下四种情况不能用this:1.行间2.嵌套3.定时器4.绑定*/
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

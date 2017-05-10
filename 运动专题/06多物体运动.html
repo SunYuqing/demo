@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变宽的div</title>
+    <style>
+        #div1{
+            width:100px;height:100px;background: red;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.onload=function(){
+        var oDiv=document.getElementById("div1")
+        oDiv.onmouseover=function(){
+            startMove(300);
+        }
+        oDiv.onmouseout=function(){
+            startMove(100);
+        }
+    }
+    timer=null;
+    function startMove(iTarget){
+        var oDiv=document.getElementById("div1")
+        clearInterval(timer);
+        timer=setInterval(function() {
+            var iSpeed=(iTarget-oDiv.offsetWidth)/8;
+            iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+            if(oDiv.offsetWidth==iTarget){
+                clearInterval(timer);
+            }else{
+                oDiv.style.width=oDiv.offsetWidth+iSpeed+'px';
+            }
+        },30);
+    }
+</script>
+<div id="div1"></div>
+</body>
+</html>
