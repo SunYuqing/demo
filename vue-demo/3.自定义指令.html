@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<div id="app">hellow vue
+		<!-- 
+		1.
+		<input type="text" >
+		<input type="text" v-focus>
+		<input type="text" > -->
+		
+		<!-- 
+		2 -->
+
+		<my-component></my-component>
+		<!-- <input type="text" v-focus> -->
+		<my-component></my-component>
+
+
+	</div>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script>
+
+		//1.注册全局自定义指令
+		// Vue.directive('focus',{
+		// 	// 将绑定的元素插入到dom中
+		// 	inserted:function(el){
+		// 		el.focus();
+		// 	}
+		// })
+
+		//2. 局部注册指令
+		Vue.component('my-component',{
+			template:"<input v-focus type='text'>",
+			directives:{
+				
+				focus:{
+					inserted: function(el) {
+						el.focus();
+					}
+				
+			}
+				
+			}
+		})
+		var app = new Vue({
+			el: "#app"
+		});
+
+	</script>
+</body>
+</html>
